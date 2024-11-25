@@ -1,0 +1,230 @@
+# Documentation of the Project: Animals Names
+
+## Members:
+- **Dijanira Muachifi** (Neptun: U2FELP)
+- **Alfred** (Neptun: y51ard)
+  
+**GitHub Repository**: [Link to the repository](https://github.com/DijaniraMuachifi/AnimalWeb.git)  
+**Localhost URL**: [http://localhost/web/](http://localhost/web/)  
+**Hosting URL**: [http://dijaniraalfred.wuaze.com](http://dijaniraalfred.wuaze.com)
+
+---
+
+## Table of Contents:
+1. [Introduction](#1-introduction)
+2. [Environment Setup](#2-environment-setup)
+3. [Directory Structure](#3-directory-structure)
+4. [Features](#4-features)
+5. [Design and User Interface](#5-design-and-user-interface)
+6. [System Administration](#6-system-administration)
+7. [Code Example and Explanation](#7-code-example-and-explanation)
+8. [Screenshots](#8-screenshots)
+9. [Final Considerations](#9-final-considerations)
+
+---
+
+### 1. Introduction
+
+This document outlines the development, structure, and features of the **Animals Names** web application, which showcases information about animals and their appearances in literary novels, particularly focusing on the works of **István Fekete**. The system is designed to be simple yet functional, providing an intuitive interface for exploring animal-related data and a robust administrative panel for managing the content.
+
+**Objective of the System**:  
+The primary goal of the system is to create an interactive platform where users can browse through animal-related information from **István Fekete's** novels. Key features include:
+
+- A responsive interface for easy navigation.
+- Administrative tools for managing content such as adding, updating, and deleting entries.
+- Integration of interactive charts to visualize data effectively.
+
+---
+
+### 2. Environment Setup
+
+#### System Requirements:
+
+- **Web Administrator**:  
+  - Username: `Kandida@gmail.com`  
+  - Password: `1234567890`
+  
+- **Localhost**:  
+  - Username: `muachifi@mail.com`  
+  - Password: `1234567890`
+
+- **Software Requirements**:  
+  - PHP: 7.4 or higher  
+  - Web Server: Apache or Nginx  
+  - Database: MySQL  
+
+- **External Libraries**:  
+  - **Bootstrap**: For responsive structure and design  
+  - **Font Awesome**: For icons and graphics  
+  - **jQuery**: For DOM manipulation and dynamic content  
+  - **Chart.js**: For generating interactive charts
+
+#### Installation Process:
+
+1. Copy all project files to the designated web server directory.
+2. Configure the MySQL database using the provided scripts in the Database Structure section.
+3. Ensure all necessary PHP extensions are enabled and the server supports the required dependencies.
+4. Update the `.env` file with your database credentials.
+5. Run migrations and seed the database to initialize the application.
+
+#### User Roles and Access:
+
+- **Guest**: Can view publicly available content.
+- **Logged-in User**: Can manage their own data entries.
+- **Admin**: Full access to manage content, user roles, and system settings.
+
+---
+
+### 3. Directory Structure
+
+The Animals Names project is organized into a modular and clear directory structure. Below is the breakdown:
+
+```
+web/
+├── admin/                    # Files for the administrative panel
+├── client/                   # Client interface files
+│   ├── css/                  # Custom CSS styles
+│   ├── images/               # Project images
+│   ├── js/                   # JavaScript files
+│   ├── php/                  # PHP files for business logic
+│   ├── index.php             # Homepage
+│   ├── about.php             # About page
+│   └── login.php             # Login page
+├── README.md                 # Documentation file
+└── .gitignore                # Git ignore file
+```
+
+#### Folder Breakdown:
+
+- **admin/**: Contains files for managing animal and user data, accessible only by administrators.
+- **client/**: Contains files for the user interface, including CSS, JavaScript, and PHP files.
+  - **index.php**: The homepage.
+  - **about.php**: Provides information about the website.
+  - **login.php**: Login page for user access.
+- **README.md**: Provides project setup and usage instructions.
+- **.gitignore**: Specifies which files should be ignored by Git.
+
+---
+
+### 4. Features
+
+The system provides distinct features for both clients and administrators:
+
+#### Client Features:
+1. **Animal Viewing**: Users can view a list of animals and details about their species and appearances in novels.
+2. **Advanced Search**: Allows users to search for animals by name, species, or novel.
+3. **Authentication**: Users can register, log in, and manage their accounts.
+4. **Interactive Charts**: Uses Chart.js to display charts showing the number of animal appearances in novels.
+
+#### Admin Features:
+1. **Animal Management**: Admins can add, edit, or delete animal and novel information.
+2. **User Management**: Admins can control user access and manage roles.
+3. **Interactive Reports**: Includes charts generated by Chart.js to visualize system data.
+
+---
+
+### 5. Design and User Interface
+
+The **Animals Names** project uses **Bootstrap 5** for a modern, responsive design. The client interface is user-friendly, with a navigation menu at the top and easy access to key features from the homepage.
+
+#### Client Layout:
+- **Home**: Lists animals with links to detailed pages.
+- **About**: Explains the system concept and information about István Fekete's novels.
+- **Login**: Page for users to log in to access restricted features.
+
+#### Navigation Menu:
+The navigation menu, built using **Bootstrap**, provides an easy-to-navigate layout across devices.
+
+```html
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="index.php">Animals Name</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+    </ul>
+  </div>
+</nav>
+```
+
+#### Chart.js Integration:
+Interactive charts display the frequency of animal appearances in novels.
+
+```html
+<canvas id="animalChart" width="400" height="400"></canvas>
+<script>
+  var ctx = document.getElementById('animalChart').getContext('2d');
+  var animalChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Novel 1', 'Novel 2', 'Novel 3'],
+      datasets: [{
+        label: 'Animal Appearances',
+        data: [12, 19, 3],
+        backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
+        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+        borderWidth: 1
+      }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+  });
+</script>
+```
+
+---
+
+### 6. System Administration
+
+The admin panel provides various tools for managing and monitoring the system, including:
+
+- **Animal and Novel Management**: Admins can modify or delete data.
+- **User Metrics and Activity Monitoring**: Visual insights into system performance and activity.
+- **Access Control**: Admins manage user roles and permissions.
+
+---
+
+### 7. Code Example and Explanation
+
+The code validates user login credentials using PHP and interacts with the database to authenticate users:
+
+```php
+// Database connection setup
+require_once './php/config.php';
+
+// Login logic
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $result = $app->executeQuery($query);
+
+    if ($result) {
+        header('Location: dashboard.php');
+    } else {
+        echo "Invalid credentials.";
+    }
+}
+```
+
+---
+
+### 8. Screenshots
+
+- **Homepage**: Displays the list of animals.
+- **Admin Dashboard**: Example of interactive charts showing data insights.
+- **Admin Menu**: Shows CRUD functionalities for managing animals.
+
+---
+
+### 9. Final Considerations
+
+The **Animals Names** project offers a platform for managing and exploring animal data related to István Fekete's novels. It is designed to be user-friendly, secure, and efficient, utilizing modern technologies such as **PHP**, **MySQL**, **Bootstrap**, and **Chart.js**. Both the client and admin interfaces are optimized for a seamless experience.
+
+---
+
+This project is a comprehensive solution to display animal
