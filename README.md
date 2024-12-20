@@ -2,8 +2,7 @@
 
 ## Members:
 - **Dijanira Muachifi** (Neptun: U2FELP)
-- **Alfred** (Neptun: y51ard)
-  
+
 **GitHub Repository**: [Link to the repository](https://github.com/DijaniraMuachifi/AnimalWeb.git)  
 **Localhost URL**: [http://localhost/web/](http://localhost/web/)  
 **Hosting URL**: [http://dijaniraalfred.wuaze.com](http://dijaniraalfred.wuaze.com)
